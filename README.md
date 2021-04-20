@@ -12,6 +12,10 @@ I've only tested these on Windows. I don't know if they repro on Linux or macOS.
 
 ### RepeatBuildOmitsWarnings
 
+> **Note**:
+>
+> I have filed an [issue in dotnet/roslyn-analyzers](https://github.com/dotnet/roslyn-analyzers/issues/5045).
+
 The purpose of this project is to demonstrate that the first build will produce warnings or errors from rules configured
 in the [.editorconfig](./.editorconfig), but a subsequent build will succeed without any warnings or errors.
 
