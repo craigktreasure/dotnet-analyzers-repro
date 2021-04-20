@@ -1,0 +1,34 @@
+<Project>
+  <PropertyGroup>
+    <!-- Treat all warnings as errors when run in Release or Azure DevOps builds. -->
+    <AllWarningsAsErrors Condition=" '$(AllWarningsAsErrors)' == '' and '$(Configuration)' == 'Release' ">true</AllWarningsAsErrors>
+    <AllWarningsAsErrors Condition=" '$(AllWarningsAsErrors)' == '' and '$(IsAzureDevOpsBuild)' == 'true' ">true</AllWarningsAsErrors>
+    <AllWarningsAsErrors Condition=" '$(AllWarningsAsErrors)' == '' ">false</AllWarningsAsErrors>
+
+    <MSBuildTreatWarningsAsErrors Condition=" $(MSBuildTreatWarningsAsErrors) == '' ">$(AllWarningsAsErrors)</MSBuildTreatWarningsAsErrors>
+    <TreatWarningsAsErrors Condition=" $(TreatWarningsAsErrors) == '' ">$(AllWarningsAsErrors)</TreatWarningsAsErrors>
+
+    <!-- https://docs.microsoft.com/dotnet/csharp/nullable-references#nullable-contexts -->
+    <Nullable>enable</Nullable>
+
+    <!-- Include PDB files inside the bundle -->
+    <DebugType>embedded</DebugType>
+
+    <!-- C# language version -->
+    <!-- https://docs.microsoft.com/dotnet/csharp/language-reference/configure-language-version -->
+    <LangVersion>latest</LangVersion>
+  </PropertyGroup>
+
+  <!-- .NET analyzers configuration -->
+  <!-- https://docs.microsoft.com/dotnet/fundamentals/code-analysis/overview -->
+  <PropertyGroup>
+    <EnableNETAnalyzers>true</EnableNETAnalyzers>
+    <AnalysisMode>AllEnabledByDefault</AnalysisMode>
+    <CodeAnalysisTreatWarningsAsErrors>$(AllWarningsAsErrors)</CodeAnalysisTreatWarningsAsErrors>
+    <EnforceCodeStyleInBuild>true</EnforceCodeStyleInBuild>
+    <AnalysisLevel>5.0</AnalysisLevel>
+
+    <!-- Disable CA1014 - Mark assemblies with CLSCompliant -->
+    <NoWarn>$(NoWarn);CA1014</NoWarn>
+  </PropertyGroup>
+</Project>
