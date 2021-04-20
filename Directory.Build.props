@@ -17,6 +17,11 @@
     <!-- C# language version -->
     <!-- https://docs.microsoft.com/dotnet/csharp/language-reference/configure-language-version -->
     <LangVersion>latest</LangVersion>
+
+    <!-- Generating docs is required to make some analyzers work (IDE005 for example) -->
+    <!-- See https://github.com/dotnet/roslyn/issues/41640 -->
+    <GenerateDocumentationFile>true</GenerateDocumentationFile>
+    <NoWarn>$(NoWarn);CS1591</NoWarn>
   </PropertyGroup>
 
   <!-- .NET analyzers configuration -->

@@ -126,6 +126,18 @@ Running `dotnet clean` followed by another `dotnet build` causes the errors to r
 
 ### UsingDirectiveIsUnnecessary
 
+> **NOTE**:
+>
+> This is a known issue and, per the
+> [IDE0005 documentation](https://docs.microsoft.com/dotnet/fundamentals/code-analysis/style-rules/ide0005) can be fixed
+> by enabling [XML documentation comments](https://docs.microsoft.com/dotnet/csharp/codedoc). More information can be
+> found in [this issue](https://github.com/dotnet/roslyn/issues/41640).
+> 
+> This project now includes a fix by setting `<GenerateDocumentationFile>true</GenerateDocumentationFile>` in
+> [Directory.Build.props](./Directory.Build.props) meaning the following will no longer repro without it.
+>
+> It would still be great if it worked without generating documentation.
+
 The purpose of this project is to demonstrate the inability to make the "Using directive is unnecessary rule" manifest at build time.
 
 The warning (as configured in [.editorconfig](./.editorconfig) for both IDE0005 and CS8019) is visible in Visual Studio Code and Visual Studio:
